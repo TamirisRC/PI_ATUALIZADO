@@ -1,0 +1,76 @@
+.custom-card {
+    margin: 20px 0;
+    cursor: pointer;
+  }
+  
+  .custom-btn {
+    margin: 5px 10px;
+    background-color: #00448d;
+  }
+  
+  .selected {
+    border: 2px solid #007bff;
+  }
+  
+  .card-header {
+    background-color: #6db8ff;
+    border: 2px solid #00448d;
+  }
+  
+  .card-body {
+    background-color: #ffffff;
+    border: 2px solid #00448d;
+  }
+  
+  .btn-sm {
+    margin-right: 5px;
+  }
+  
+  .btn-danger{
+    background-color: #ca0000;
+  }
+  .btn-secondary{
+    background-color: #00448d;
+  }
+  
+  
+  .custom-badge {
+    background-color: #00448d;
+    color: white;
+  }
+  
+  .custom-assign-btn {
+    background-color: #00448d;
+    color: white;
+  }
+  
+  .custom-view-btn {
+    background-color: #00448d;
+    color: white;
+  }
+  
+  .icon {
+    width: 18px; /* Tamanho do ícone */
+    height: 18px; /* Tamanho do ícone */
+    margin-right: 3px; /* Espaço entre o ícone e o texto */
+    margin-top: -2px; /* Ajuste fino para subir o ícone */
+  }
+  .icon-view {
+    width: 16px; /* Tamanho do ícone */
+    height: 16px; /* Tamanho do ícone */
+    margin-right: 3px; /* Espaço entre o ícone e o texto */
+    margin-top: -2px; /* Ajuste fino para subir o ícone */
+  }
+  .icon-header {
+    width: 38px; /* Ajuste o tamanho do ícone para o header */
+    height: 38px; /* Ajuste o tamanho do ícone para o header */
+    vertical-align: middle; /* Alinha o ícone com o texto */
+    margin-right: 5px; /* Espaço entre o ícone e o texto */
+    margin-top: -5px; /* Ajuste fino para subir o ícone */
+  }
+  .text-center {
+    text-align: center;
+  }
+  .title-bold {
+    font-weight: bold;
+  }

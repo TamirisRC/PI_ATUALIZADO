@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu Dinâmico com Calendário</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="/menu.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container menu-container">
+        <div class="profile-info">
+            <img src="/img/profile.png" alt="Profile" class="rounded-profile-img" />
+            <p>{{user.nome}}</p>
+            <p>{{user.email}}</p>
+        </div>
+
+        <div class="menu">
+            <div class="menu-item">
+                <img src="/img/icon-plano.png" alt="Turmas" class="menu-icon" />
+                <a href="/turmas" class="menu-link">
+                    <span>Turmas</span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <img src="#" alt="Contas dos Alunos" class="menu-icon" />
+                <a href="/contas_alunos" class="menu-link">
+                    <span>Contas dos Alunos</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="current-date" id="currentDate"></div>
+        <div class="calendar" id="calendar">
+            <div class="month">
+                <h2></h2>
+            </div>
+            <div class="weekdays">
+                <div>Dom</div>
+                <div>Seg</div>
+                <div>Ter</div>
+                <div>Qua</div>
+                <div>Qui</div>
+                <div>Sex</div>
+                <div>Sáb</div>
+            </div>
+            <div class="days" id="calendarDays"></div>
+        </div>
+        <div id="alertsContainer"></div>
+        <div id="eventsList"></div>
+    </div>
+
+    <!-- Modal para adicionar/editar eventos -->
+    <div
+      class="modal fade"
+      id="eventModal"
+      tabindex="-1"
+      aria-labelledby="eventModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="eventModalLabel">
+              Adicionar/Editar Evento
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="eventForm">
+              <div class="form-row">
+                <div class="form-group col">
+                  <label for="eventDate">Data</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="eventDate"
+                    readonly
+                  />
+                </div>
+                <div class="form-group col">
+                  <label for="eventName">Nome do Evento</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="eventName"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-group d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary mr-2">
+                  Salvar
+                </button>
+                <button type="button" class="btn btn-danger" id="deleteEvent">
+                  Excluir
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var currentDateElement = document.getElementById('currentDate');
+            var currentDate = new Date();
+            var options = {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+            };
+            currentDateElement.textContent = currentDate.toLocaleDateString(
+                'pt-BR',
+                options
+            );
+
+        });
+    </script>
+</body>
+</html>

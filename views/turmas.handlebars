@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turmas</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="turmas.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="d-flex align-items-center titulo-branco">
+                <span class="icon mr-2">&#128101;</span>
+                Turmas
+            </h1>
+            <button class="btn btn-create">
+                Criar uma equipe &#128101; 
+            </button>
+        </div>
+        <div class="row">
+            {{#each turmas}}
+            <div class="col-md-4 mb-4">
+                <a href="/semestre?turma={{this.id}}">
+                    <div class="card p-3 text-center btn-transparent">
+                        <div class="icon mb-2">&#127891;</div>
+                        <h2 class="card-title">{{this.nome}}</h2>
+                    </div>
+                </a>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plano Adaptativo</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="plano-adaptativo.css" />
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center">
+            <img src="/img/icon-plano.png" class="icon-header" alt="Ícone">Plano Adaptativo
+        </h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card custom-card" id="semestre1">
+                    <div class="card-header">
+                        <span class="title-bold">1º Semestre</span>
+                    </div>
+                    <div class="card-body"></div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card custom-card" id="semestre2">
+                    <div class="card-header">
+                        <span class="title-bold">2º Semestre</span>
+                    </div>
+                    <div class="card-body"></div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card custom-card" id="semestre3">
+                    <div class="card-header">
+                        <span class="title-bold">3º Semestre</span>
+                    </div>
+                    <div class="card-body"></div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card custom-card" id="semestre4">
+                    <div class="card-header">
+                        <span class="title-bold">4º Semestre</span>
+                    </div>
+                    <div class="card-body"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <div class="col-md-12 text-center">
+            <button class="btn btn-primary custom-btn" id="btnAdd" data-toggle="modal" data-target="#modalForm"
+                onclick="prepareForm('add')">
+                <img src="/img/icon-add.png" class="icon" />
+                Adicionar
+            </button>
+
+            <button class="btn btn-secondary custom-btn" id="btnEdit" data-toggle="modal" data-target="#modalForm"
+                onclick="prepareForm('edit')">
+                <img src="/img/icon-edit.png" class="icon" />
+                Editar
+            </button>
+            <button class="btn btn-danger custom-btn" id="btnDelete" data-toggle="modal" data-target="#modalForm"
+                onclick="prepareForm('delete')">
+                <img src="/img/icon-delete.png" class="icon" />
+                Excluir
+            </button>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="assignTask">Deseja atribuir uma tarefa?</label>
+                <button class="btn custom-assign-btn btn-block" id="assignTask" onclick="goToPage('task.html')">
+                    <img src="/img/tarefa.png" class="icon" /> Atribuir
+                </button>
+            </div>
+            <div class="form-group">
+                <label for="viewTask">Deseja visualizar as devoluções das tarefas?</label>
+                <button class="btn custom-view-btn btn-block" id="viewTask" onclick="goToPage('view-task.html')">
+                    <img src="/img/visualizar.png" class="icon" /> Visualizar
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="modalFormTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalFormTitle">Adicionar Plano</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="planForm">
+                        <input type="hidden" id="turma_id" />
+                        <input type="hidden" id="semestre" />
+                        <div class="form-group">
+                            <label for="planName">Nome do Plano</label>
+                            <input type="text" class="form-control" id="planName" placeholder="Digite o nome do plano" />
+                        </div>
+                        <div class="form-group">
+                            <label for="planDescription">Descrição</label>
+                            <textarea class="form-control" id="planDescription" rows="3"
+                                placeholder="Digite a descrição do plano"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="saveButton">
+                            Salvar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const selectedSemestre = localStorage.getItem('selectedSemestre');
+            const selectedTurma = localStorage.getItem('selectedTurma');
+
+            document.querySelectorAll('.custom-card').forEach((card) => {
+                card.classList.add('inactive');
+            });
+
+            if (selectedSemestre) {
+                const activeCardId = `semestre${selectedSemestre}`;
+                const activeCard = document.getElementById(activeCardId);
+
+                if (activeCard) {
+                    activeCard.classList.remove('inactive');
+                }
+            }
+
+            loadPlans();
+        });
+
+        function loadPlans() {
+            const turmaId = localStorage.getItem('selectedTurma');
+            const semestre = localStorage.getItem('selectedSemestre');
+
+            fetch(`/planos?turma_id=${turmaId}&semestre=${semestre}`)
+                .then(response => response.json())
+                .then(plans => {
+                    plans.forEach(plan => {
+                        const planElement = document.createElement('div');
+                        planElement.className = "plan-item";
+                        planElement.innerHTML = `
+                            <h5>${plan.nome}</h5>
+                            <p>${plan.descricao}</p>
+                            <button class="btn btn-secondary" onclick="prepareForm('edit', ${JSON.stringify(plan)})">Editar</button>
+                            <button class="btn btn-danger" onclick="prepareForm('delete', ${JSON.stringify(plan)})">Excluir</button>
+                        `;
+                        document.querySelector(`#semestre${semestre} .card-body`).appendChild(planElement);
+                    });
+                })
+                .catch(error => console.error('Erro:', error));
+        }
+
+        function prepareForm(action, plan = {}) {
+            const turmaId = localStorage.getItem('selectedTurma');
+            const semestre = localStorage.getItem('selectedSemestre');
+            document.getElementById('turma_id').value = turmaId;
+            document.getElementById('semestre').value = semestre;
+
+            if (action === 'add') {
+                document.getElementById('modalFormTitle').innerText = 'Adicionar Plano';
+                document.getElementById('planForm').reset();
+            } else if (action === 'edit') {
+                document.getElementById('modalFormTitle').innerText = 'Editar Plano';
+                document.getElementById('planName').value = plan.nome;
+                document.getElementById('planDescription').value = plan.descricao;
+                document.getElementById('saveButton').setAttribute('data-id', plan.id);
+            } else if (action === 'delete') {
+                document.getElementById('modalFormTitle').innerText = 'Excluir Plano';
+                document.getElementById('planName').value = plan.nome;
+                document.getElementById('planDescription').value = plan.descricao;
+                document.getElementById('saveButton').setAttribute('data-id', plan.id);
+            }
+
+            document.getElementById('saveButton').setAttribute('data-action', action);
+        }
+
+        document.getElementById('planForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const action = document.getElementById('saveButton').getAttribute('data-action');
+            const turmaId = document.getElementById('turma_id').value;
+            const semestre = document.getElementById('semestre').value;
+            const planId = document.getElementById('saveButton').getAttribute('data-id');
+
+            const planData = {
+                nome: document.getElementById('planName').value,
+                descricao: document.getElementById('planDescription').value,
+                turma_id: turmaId,
+                semestre: semestre,
+            };
+
+            if (action === 'add') {
+                fetch('/planos/add', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(planData)
+                }).then(response => response.json())
+                    .then(data => {
+                        alert(data.message);
+                        loadPlans();
+                        $('#modalForm').modal('hide');
+                    });
+            } else if (action === 'edit') {
+                fetch(`/planos/edit/${planId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(planData)
+                }).then(response => response.json())
+                    .then(data => {
+                        alert(data.message);
+                        loadPlans();
+                        $('#modalForm').modal('hide');
+                    });
+            } else if (action === 'delete') {
+                fetch(`/planos/delete/${planId}`, {
+                    method: 'DELETE',
+                }).then(response => response.json())
+                    .then(data => {
+                        alert(data.message);
+                        loadPlans();
+                        $('#modalForm').modal('hide');
+                    });
+            }
+        });
+    </script>
+
+    <style>
+        .inactive {
+            opacity: 0.5;
+            pointer-events: none; 
+        }
+    </style>
+</body>
+
+</html>

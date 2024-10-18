@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Selecionar Semestre e Período</title>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="semestre.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center">Escolha o Semestre e Período</h1>
+      <form>
+        <div class="form-group">
+          <label for="semestre">Escolha o Semestre:</label>
+          <select id="semestre" class="form-control">
+            <option selected disabled>Escolha...</option>
+            <option value="1">1º Semestre</option>
+            <option value="2">2º Semestre</option>
+            <option value="3">3º Semestre</option>
+            <option value="4">4º Semestre</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="periodo">Escolha o Período:</label>
+          <select id="periodo" class="form-control">
+            <option selected disabled>Escolha...</option>
+            <option value="manhã">Matutino</option>
+            <option value="tarde">Vespertino</option>
+           <option value="noite">Noturno</option>
+          </select>
+        </div>
+        <button type="button" class="btn btn-primary btn-block" onclick="saveSelectionAndGo()">
+          Confirmar Seleção
+        </button>
+      </form>
+    </div>
+
+    <script>
+      function saveSelectionAndGo() {
+    const semestre = document.getElementById('semestre').value;
+    const periodo = document.getElementById('periodo').value;
+
+    localStorage.setItem('selectedSemestre', semestre);
+
+    window.location.href = `/plano-adaptativo?semestre=${semestre}&periodo=${periodo}`;
+}
+    </script>
+  </body>
+</html>

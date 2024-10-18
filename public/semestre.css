@@ -1,0 +1,49 @@
+/* Navbar */
+.navbar-blue {
+    background-color: #007bff;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+/* Botão de Voltar */
+#backButton {
+    border-radius: 50%;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+}
+
+#backButton i {
+    color: white; /* Define a cor do ícone da seta como branco */
+}
+
+#backButton:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Formulário */
+.card {
+    border-radius: 15px;
+    background-color: #f8f9fa;
+}
+
+.form-select {
+    border-radius: 10px;
+    font-size: 1.1rem;
+}
+
+button[type="submit"] {
+    border-radius: 25px;
+    padding: 10px 40px;
+    font-size: 1.2rem;
+}
+
+/* Estilos gerais */
+body {
+    background-color: #e9ecef;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

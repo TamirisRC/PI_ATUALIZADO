@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro de Professores</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="professores.css" />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h2 class="mb-4 text-center">Cadastro de Professores</h2>
+      <form action="/users/add" method="POST">
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nome"
+            name="nome"
+            placeholder="Digite o nome do professor"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="cpf">CPF</label>
+          <input
+            type="text"
+            class="form-control"
+            id="cpf"
+            name="cpf"
+            placeholder="Digite o CPF"
+            required
+          />
+        </div>
+         <div class="form-group">
+        <label for="role">Papel</label>
+        <select class="form-control" id="role" name="role" required>
+            <option value="diretor">Diretor</option>
+            <option value="coordenador">Coordenador</option>
+            <option value="orientador">Orientador</option>
+            <option value="representante_tg">Representante TG</option>
+            <option value="representante_po">Representante PO</option>
+        </select>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            placeholder="Digite o email"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="senha">Senha</label>
+          <input
+            type="password"
+            class="form-control"
+            id="senha"
+            name="senha"
+            placeholder="Digite a senha"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+      </form>
+
+      <h2 class="mt-5">Lista de Professores</h2>
+      <ul class="list-group">
+        {{#each professores}}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{this.nome}} - {{this.role}}
+            <form action="/users/delete" method="POST" style="display:inline;">
+              <input type="hidden" name="id" value="{{this.id}}">
+              <button type="submit" class="btn btn-danger btn-sm">Deletar</button>
+            </form>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

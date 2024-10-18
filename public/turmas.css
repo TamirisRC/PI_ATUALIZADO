@@ -1,0 +1,85 @@
+/* Estilos Globais */
+
+/* Cor de fundo do corpo */
+body {
+    background-color: #007bff; /* Altere essa cor conforme necessário */
+  }
+  
+  /* Remove bordas dos cartões e define a cor de fundo */
+  .card {
+    border: none;
+    background-color: #ffffff !important; /* Fundo branco com !important */
+    border-radius: 10px; /* Cantos arredondados para um visual moderno */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para profundidade */
+    cursor: pointer; /* Muda o cursor para indicar que é um botão */
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Transições suaves */
+  }
+  
+  /* Estilo para títulos dos cartões */
+  .card-title {
+    font-weight: bold;
+    font-size: 24px;
+    color: #000000; /* Títulos em cor preta */
+  }
+  
+  /* Estilo para o texto abaixo do título */
+  .card p {
+    color: #000000; /* Texto abaixo do título também em preto */
+    font-size: 16px; /* Tamanho de fonte ajustado, se necessário */
+  }
+  
+  /* Estilo para ícones */
+  .icon {
+    font-size: 48px; /* Tamanho grande para destaque */
+    color: #555; /* Cor neutra */
+  }
+  
+  /* Estilo para o botão 'Criar' */
+  .btn-create {
+    border: none;
+    background-color: rgb(255, 255, 255); /* Fundo cinza claro */
+    border-radius: 50px; /* Botão arredondado para visual moderno */
+    padding: 10px 20px; /* Padding para tamanho confortável */
+  }
+  
+  /* Efeito hover para cartões */
+  .card:hover {
+    transform: translateY(-5px); /* Elevação leve ao passar o mouse */
+    background-color: #e0e0e0; /* Fundo cinza claro ao passar o mouse */
+  }
+  
+  /* Efeito hover para o botão 'Criar' */
+  .btn-create:hover {
+    background-color: #e0e0e0; /* Pouco mais escuro ao passar o mouse */
+  }
+  
+  /* Remove estilo padrão do botão */
+  button.card {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    border: none;
+    outline: none;
+    background: transparent; /* Transparente */
+    font: inherit;
+    cursor: pointer;
+  }
+  
+  /* Estilo para o título 'Turmas' */
+  .titulo-branco {
+    color: #ffffff; /* Cor branca para o título */
+  }
+  
+  /* Deixa o link do botão transparente */
+  a {
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: none;
+  }
+  
+  button.card:hover {
+    background-color: transparent; /* Deixa o botão transparente no hover */
+  }

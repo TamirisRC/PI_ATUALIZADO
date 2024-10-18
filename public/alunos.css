@@ -1,0 +1,82 @@
+body {
+    background-color: #ffffff; /* Fundo da página */
+  }
+  
+  h2 {
+    color: #343a40; /* Cor do título */
+    font-weight: 700;
+  }
+  
+  .table {
+    background-color: #ffffff; /* Fundo da tabela */
+  }
+  
+  .table th,
+  .table td {
+    vertical-align: middle;
+    text-align: center;
+  }
+  
+  .table thead th {
+    background-color: #007bff; /* Cor de fundo do cabeçalho da tabela - azul */
+    color: #ffffff; /* Cor do texto do cabeçalho da tabela */
+  }
+  
+  .table tbody tr:nth-of-type(odd) {
+    background-color: #e9ecef; /* Fundo das linhas ímpares da tabela */
+  }
+  
+  .table tbody tr:nth-of-type(even) {
+    background-color: #f8f9fa; /* Fundo das linhas pares da tabela */
+  }
+  
+  .modal-header {
+    background-color: #6db8ff; /* Cor de fundo do cabeçalho do modal */
+    color: #ffffff; /* Cor do texto do cabeçalho do modal */
+  }
+  
+  .modal-body {
+    background-color: #f8f9fa; /* Fundo do corpo do modal */
+  }
+  
+  .modal-footer {
+    background-color: #e9ecef; /* Fundo do rodapé do modal */
+  }
+  
+  .btn-primary,
+  .btn-success,
+  .btn-danger,
+  .btn-secondary {
+    margin: 0 5px;
+  }
+  
+  .btn-primary {
+    background-color: #007bff; /* Cor de fundo do botão primário */
+    border-color: #007bff; /* Cor da borda do botão primário */
+  }
+  
+  .btn-success {
+    background-color: #007bff; /* Cor de fundo do botão de sucesso */
+    border-color: #007bff; /* Cor da borda do botão de sucesso */
+  }
+  
+  .btn-success:hover {
+    background-color: #007bff; /* Cor de fundo do botão de sucesso ao passar o mouse */
+    border-color: #007bff; /* Cor da borda do botão de sucesso ao passar o mouse */
+  }
+  
+  .btn-danger {
+    background-color: #dc3545; /* Cor de fundo do botão de perigo */
+    border-color: #dc3545; /* Cor da borda do botão de perigo */
+  }
+  
+  .btn-secondary {
+    background-color: #6db8ff; /* Cor de fundo do botão secundário */
+    border-color: #6db8ff; /* Cor da borda do botão secundário */
+  }
+  
+  #successModal .modal-body {
+    text-align: center;
+    font-size: 1.2em;
+    color: #6db8ff; /* Cor do texto do modal de sucesso */
+  }
